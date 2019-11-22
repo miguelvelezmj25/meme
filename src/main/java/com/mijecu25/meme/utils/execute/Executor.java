@@ -23,6 +23,7 @@ public final class Executor {
       }
     }
 
+    inputReader.close();
     System.out.println();
   }
 
@@ -49,6 +50,7 @@ public final class Executor {
       }
     }
 
+    errorReader.close();
     System.out.println();
   }
 }
