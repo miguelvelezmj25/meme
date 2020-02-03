@@ -3,6 +3,7 @@ package com.mijecu25.meme.utils.execute;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public final class Executor {
   public static final String USER_HOME = System.getProperty("user.home");
@@ -10,6 +11,18 @@ public final class Executor {
   public static final String CLASS_PATH = "./target/classes";
 
   private Executor() {}
+
+  public static void executeCommand(List<String> commandList) throws IOException, InterruptedException {
+    ProcessBuilder builder = new ProcessBuilder();
+    builder.command(commandList);
+
+    Process process = builder.start();
+
+    Executor.processOutput(process);
+    Executor.processError(process);
+
+    process.waitFor();
+  }
 
   public static void processOutput(Process process) throws IOException {
     System.out.println("Output: ");
